@@ -51,9 +51,9 @@ def test_you_can_checkout_a_guest_from_a_room
 end
 
 def test_you_can_add_a_song_to_a_room
-    song_title = @hound.title
-    new_song_to_room = @tropicana.add_song_to_room(song_title)
-    assert_equal("Hound Dog", new_song_to_room[0])
+    new_song_to_room = @tropicana.add_song_to_room(@hound)
+    song_title = new_song_to_room.map { |song| song.title }
+    assert_equal("Hound Dog", song_title[0])
 end
 
 
