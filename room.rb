@@ -12,8 +12,4 @@ class Room
     @guests = []
   end
 
-  # def add_guest_to_room(guest_name, room_name)
-  #   add_guest = 
-  # end
-
 end
