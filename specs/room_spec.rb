@@ -24,8 +24,7 @@ class TestRoom < Minitest::Test
     @jailhouse = Song.new("Elvis Presley", "Jailhouse Rock")
     @hound = Song.new("Elvis Presley", "Hound Dog")
     @blue = Song.new("Elvis Presley", "Blue Suede Shoes")
-
-end
+  end
 
 def test_guest_has_name
     name = @dan.guest_name
@@ -33,14 +32,15 @@ def test_guest_has_name
 end
 
 def test_you_can_checkin_a_guest_to_a_room
-    guest_in_room = @flamingo.guests << @dan.guest_name
-    assert_equal("Dan", guest_in_room[0])
+    name = @dan.guest_name
+    guest_in_room = @flamingo.check_guest_into_room(name)
+    assert_equal("Dan", name)
 end
 
-def test_you_can_checkin_multiple_guests_to_a_room
+def test_you_can_checkin_a_party_of_guests_to_a_room
     guests_in_room = @excalibur.guests.concat (@the_conners)
-    multiple_guests = guests_in_room.map { |person| person.guest_name }
-   assert_equal(["Dan", "Roseanne", "Becky", "Darlene", "DJ"], multiple_guests)
+    party_of_guests = guests_in_room.map { |person| person.guest_name }
+   assert_equal(["Dan", "Roseanne", "Becky", "Darlene", "DJ"], party_of_guests)
 end
 
 def test_you_can_checkout_a_guest_from_a_room
@@ -51,8 +51,9 @@ def test_you_can_checkout_a_guest_from_a_room
 end
 
 def test_you_can_add_a_song_to_a_room
-    song_in_room = @tropicana.songs << @jailhouse.title
-    assert_equal("Jailhouse Rock", song_in_room[0])
+    song_title = @hound.title
+    new_song_to_room = @tropicana.add_song_to_room(song_title)
+    assert_equal("Hound Dog", new_song_to_room[0])
 end
 
 
